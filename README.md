@@ -51,10 +51,13 @@ positioning)
 │   ├── randomness-docket-sticky.qmd   # the piece
 │   ├── sticky-docket.css              # layout + sticky figures
 │   └── powerball-docket.scss          # brand theme
-├── R/
+├── src/
+│   ├── 00_build_processed_powerball.R
+│   ├── 01_freeze_panel_findings.R
 │   ├── panel_01_consecutive_v3_docket.R
 │   ├── panel_02_overlap_v2_docket.R
 │   ├── panel_03_droughts_v5_docket.R
+│   ├── panel_03_drought_simulation.R
 │   └── theme-docket.R
 ├── analysis/                          # exploratory notebooks (01–08)
 ├── outputs/                           # rendered panel PNGs
