@@ -3,7 +3,7 @@
 **The Randomness Docket** — a scrollytelling piece examining how real
 Powerball drawings can make ordinary randomness look suspicious.
 
-🔗 **Live:** _add Netlify URL after deploy_
+🔗 **Live:** https://randomness-docket.netlify.app/
 💻 **Source:** this repository
 
 ---

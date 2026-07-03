@@ -1,0 +1,4 @@
+- source: randomness-docket-sticky.qmd
+  netlify:
+    - id: 65ddaaa3-3b65-49ac-859f-05b87e40043a
+      url: https://meek-croissant-5a6c9a.netlify.app
