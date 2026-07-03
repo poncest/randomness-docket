@@ -1,0 +1,167 @@
+/* ────────────────────────────────────────────────
+   THE RANDOMNESS DOCKET · Closeread implementation CSS
+   Phase 4 — replaces coldread-extras.css (delete that file now;
+   everything it did is folded in below).
+
+   Two halves:
+   1. Non-cr-section blocks (standfirst / methodology / coda /
+      sources / tools / licence / footer) — unchanged from the
+      cold-read draft. These sit OUTSIDE the cr-section.
+   2. Real Closeread structural CSS — cr-section/sticky/trigger,
+      retheme'd into the docket palette (paper/ink/blue/gold) via
+      the CSS custom properties powerball-docket.scss exposes
+      (--paper, --ink, --body, --muted, --rule, --blue, --gold,
+      --gold-text).
+   ──────────────────────────────────────────────── */
+
+/* ═══════════ 1. NON-CR-SECTION BLOCKS ═══════════ */
+
+.standfirst {
+  max-width: 640px; margin: 1.5rem auto 2.5rem;
+  font-size: 1.15rem; line-height: 1.6; color: var(--body);
+}
+
+.methodology {
+  max-width: 640px; margin: 2rem auto; padding: 1.25rem 1.5rem;
+  border: 1px solid var(--rule); border-radius: 4px;
+}
+.methodology p { color: var(--body); line-height: 1.6; }
+
+.coda {
+  max-width: 640px; margin: 2rem auto; text-align: center;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: 1.4rem; line-height: 1.5; font-style: italic;
+  color: var(--ink);
+}
+
+.data-sources, .tools-block, .licence-block, .footer-line {
+  max-width: 640px; margin: 0.75rem auto; font-size: 0.85rem;
+  color: var(--muted); text-align: center;
+}
+
+/* ═══════════ 2. REAL CLOSEREAD STRUCTURE ═══════════ */
+
+/* ── cr-section wrapper ───────────────────────── */
+.cr-section {
+  background: var(--paper) !important;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+/* ── Narrative column (the scrolling trigger text) ── */
+.cr-narrative-col,
+.narrative-col {
+  background: var(--paper) !important;
+  color: var(--ink);
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: 18px;
+  line-height: 1.7;
+  padding: 0 2rem;
+}
+
+.cr-narrative-col p,
+.narrative-col p {
+  color: var(--ink);
+}
+
+/* ── Sticky column + sticky box + image sizing ──────
+   The sticky box itself is the thing Closeread gives a real
+   height to. Everything inside it — including whatever wrapper
+   element (<p> or <figure>) Quarto puts around a bare markdown
+   image — needs to be told to fill that box via flex, because
+   percentage-based max-width/max-height on the <img> alone
+   resolves against an unsized parent and does nothing.
+   Sizes are set in viewport units (not %) so they don't depend
+   on any ancestor being sized correctly. ────────────────────── */
+
+.sticky {
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sticky.cr-active {
+  opacity: 1;
+}
+
+.cr-sticky-col,
+.sticky-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Wrapper Quarto puts around a bare markdown image — covers both
+   <p><img></p> and <figure><img></figure> cases, whichever applies. */
+.sticky p,
+.sticky figure {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sticky img,
+.cr-sticky-col img {
+  opacity:    1 !important;
+  visibility: visible !important;
+  display:    block !important;
+  max-width:  90vw !important;
+  max-height: 65vh !important;
+  width:  auto !important;
+  height: auto !important;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* ── Trigger cards (micro-trigger text: Exhibit A / B / C) ── */
+.cr-trigger,
+.trigger {
+  background: rgba(221, 214, 198, 0.35); /* --rule at low opacity, paper-warm */
+  border-left: 3px solid var(--gold-text);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-family: "Archivo", sans-serif;
+  font-size: 0.95rem;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+}
+
+.cr-trigger.active,
+.trigger.active {
+  border-left-color: var(--gold);
+  box-shadow: 0 0 0 1px rgba(160, 110, 42, 0.15);
+  color: var(--gold-text);
+}
+
+/* ── Exhibit eyebrow inside trigger text (Exhibit A/B/C) ── */
+.cr-trigger strong,
+.trigger strong {
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: var(--gold-text);
+}
+.cr-section {
+  grid-template-columns: minmax(280px, 1fr) minmax(400px, 2fr) !important;
+}
+
+.cr-sticky-col,
+.sticky-col {
+  min-width: 0;
+  width: 100%;
+}
+
+.sticky {
+  min-height: 70vh;
+}

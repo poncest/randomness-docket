@@ -1,0 +1,128 @@
+/* The Randomness Docket — plain sticky implementation
+   No Closeread, no Scrollama, no JS. */
+
+.standfirst {
+  max-width: 640px;
+  margin: 1.5rem auto 2.5rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--body);
+}
+
+.rule {
+  max-width: 760px;
+  margin: 2.5rem auto;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.sticky-exhibit {
+  max-width: 1400px;
+  margin: 0 auto 6rem;
+  padding: 0 1.25rem;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.6fr) minmax(420px, 2fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.exhibit-copy {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.trigger-card {
+  background: rgba(221, 214, 198, 0.35);
+  border-left: 3px solid var(--gold-text);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  font-family: "Archivo", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.trigger-card p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.trigger-card strong {
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: var(--gold-text);
+}
+
+.exhibit-figure {
+  position: sticky;
+  top: 2rem;
+  min-height: calc(100vh - 4rem);
+  margin: 0;
+}
+
+.exhibit-figure img {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.methodology {
+  max-width: 640px;
+  margin: 2rem auto;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.methodology p {
+  color: var(--body);
+  line-height: 1.6;
+}
+
+.coda {
+  max-width: 640px;
+  margin: 2rem auto;
+  text-align: center;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.data-sources,
+.tools-block,
+.licence-block,
+.footer-line {
+  max-width: 640px;
+  margin: 0.75rem auto;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 820px) {
+  .sticky-exhibit {
+    display: block;
+    margin-bottom: 4rem;
+  }
+
+  .exhibit-copy {
+    min-height: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  .exhibit-figure {
+    position: static;
+    min-height: auto;
+  }
+
+  .exhibit-figure img {
+    max-height: none;
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+/* Cold-read draft only — layout scaffolding not covered by the docket
+   theme (which styles colors/type, not this comparison grid). Delete
+   this file once the coda is selected and full Closeread wiring begins. */
+
+.cr-section { max-width: 720px; margin: 2rem auto; text-align: center; }
+.cr-section img { max-width: 100%; height: auto; }
+
+.standfirst {
+  max-width: 640px; margin: 1.5rem auto 2.5rem;
+  font-size: 1.15rem; line-height: 1.6; color: var(--body);
+}
+
+.methodology {
+  max-width: 640px; margin: 2rem auto; padding: 1.25rem 1.5rem;
+  border: 1px solid var(--rule); border-radius: 4px;
+}
+.methodology p { color: var(--body); line-height: 1.6; }
+
+.coda {
+  max-width: 640px; margin: 2rem auto; text-align: center;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: 1.4rem; line-height: 1.5; font-style: italic;
+  color: var(--ink);
+}
+
+.data-sources, .tools-block, .licence-block, .footer-line {
+  max-width: 640px; margin: 0.75rem auto; font-size: 0.85rem;
+  color: var(--muted); text-align: center;
+}

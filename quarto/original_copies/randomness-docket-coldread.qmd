@@ -1,0 +1,205 @@
+---
+title: "Does This Look Random to You?"
+format:
+  closeread-html:
+    theme: powerball-docket.scss
+    css: closeread-docket.css
+    remove-header-space: true
+    self-contained: true
+execute:
+  warning: false
+  message: false
+  echo: false
+---
+
+<!--
+PHASE 4 — REAL CLOSEREAD WIRING
+=====================================
+Structure carried forward from PDC's `04_funafuti_tuvalu_threshold.qmd`
+per handoff instruction — retheme colors only, don't rebuild the
+skeleton. What changed vs. the cold-read draft:
+  - format switched from `html` to `closeread-html`
+  - three panels now live inside ONE continuous :::{.cr-section},
+    each as its own #cr-panelN sticky, matching PDC's single-section
+    multi-sticky pattern (not three isolated static images)
+  - micro-trigger text added between stickies so the sticky-swap has
+    something to trigger on: "Exhibit A / B / C" + one clause each.
+    This is navigation, not narration — it does not restate a panel's
+    question or reveal, and it is NOT the still-open "verdict divider"
+    decision (open item 4 in the handoff). If verdict dividers are
+    resolved later, they'd likely replace or extend this text — this
+    is deliberately minimal until that decision is made.
+  - JS scroll-listener workaround carried verbatim from PDC (bottom of
+    this file) — Closeread v1.0.1 + Scrollama init-timing bug fix.
+  - coldread-extras.css replaced by closeread-docket.css, which keeps
+    the non-cr-section blocks (standfirst/methodology/coda/sources/
+    tools/licence/footer) unchanged and adds the retheme'd cr-section/
+    sticky/trigger rules PDC's styles.css defines but the docket scss
+    never needed until now.
+
+STILL NOT RESOLVED BY THIS PASS (carried from handoff, unchanged):
+  - Panel 2 ring treatment: v2 (thin gold ring) wired below. v2b
+    (graphite ring / gold numeral only) is the live alternate — swap
+    the image path in #cr-panel2 to compare.
+  - Verdict dividers between panels: still open (item 4). The Exhibit
+    A/B/C micro-triggers below are structural, not that decision.
+  - Working title placeholder note from the handoff (series eyebrow
+    "THE RANDOMNESS DOCKET") — unaffected by this pass either way.
+-->
+
+<div class="header-row">
+  <div class="eyebrow">THE RANDOMNESS DOCKET</div>
+</div>
+
+# Does This Look Random to You?
+
+<div class="standfirst">
+Real Powerball drawings can make ordinary randomness look suspicious. This
+piece treats three patterns as exhibits: consecutive numbers, repeated
+numbers between drawings, and a number that seems overdue. Each one is
+compared with what a fair random process predicts.
+</div>
+
+<!-- ============================================================ -->
+<!-- CLOSEREAD SEQUENCE — Panels 1–3 as one continuous scroll      -->
+<!-- ============================================================ -->
+
+:::{.cr-section}
+
+:::{#cr-panel1}
+![](../outputs/panel_01_consecutive_v3_docket.png){fig-alt="Exhibit showing five Powerball balls from the February 20, 2019 drawing — 27, 49, 50, 51, 52 — with the observed rate of consecutive pairs (26.4%) compared to a fair-random simulation (26.3%)."}
+:::
+
+**Exhibit A.** A single Powerball drawing. @cr-panel1
+
+**Exhibit B.** Two consecutive drawings. @cr-panel2
+
+:::{#cr-panel2}
+![](../outputs/panel_02_overlap_v2_docket.png){fig-alt="Exhibit showing two consecutive Powerball drawings, February 9 and February 11, 2026, sharing the numbers 6 and 48, with the observed rate of at least one shared number (32.0%) compared to the hypergeometric expectation (32.2%)."}
+:::
+
+**Exhibit C.** A number that hasn't appeared in weeks. @cr-panel3
+
+:::{#cr-panel3}
+![](../outputs/panel_03_droughts_v5_docket.png){fig-alt="Exhibit showing number 23's current 48-draw drought compared to the typical range of 46 to 87 draws for the most-overdue number, from a 5,000-replicate simulation."}
+:::
+
+:::
+
+<hr class="rule">
+
+<!-- ============================================================ -->
+<!-- MECHANISM — background text, not its own panel (per brief)   -->
+<!-- Copy unchanged from Phase 3 cold-read.                        -->
+<!-- ============================================================ -->
+
+<div class="methodology">
+<div class="eyebrow">MECHANISM</div>
+
+<p>Three exhibits, three intuition failures. Here's the property of
+randomness that's doing the work behind all of them.</p>
+
+<p>No number in this dataset appears more or less often than chance would
+predict. But that stability only shows up over the long run. Early in any
+single number's history, its observed rate swings 15 to 300 times more
+than it does over the full dataset — small samples are noisy by nature.
+As draws accumulate, that swing narrows toward the expected rate.</p>
+
+<p>A consecutive pair, a shared number, a long drought — each looks like
+a signal because it's being read in isolation, the way a single early
+swing looks like a trend before the sample catches up. Looked at across
+the full history, each is part of the texture a fair random process
+produces at this sample size.</p>
+</div>
+
+<hr class="rule">
+
+<!-- ============================================================ -->
+<!-- CODA — Candidate A, selected at Phase 2.5 cold-read.          -->
+<!-- Candidate B retained as editorial history (not published),    -->
+<!-- same treatment as Panel 2's 34.3% figure — see handoff.       -->
+<!--   After three exhibits, this is exactly what you'd expect     -->
+<!--   from a fair random process — patterns that don't mean       -->
+<!--   anything. — Candidate B, "Resolved investigation." Rejected -->
+<!--   for reading as summary rather than closure.                 -->
+<!-- ============================================================ -->
+
+<div class="coda">
+Randomness isn't the absence of patterns. It's the presence of patterns
+that don't mean anything.
+</div>
+
+<hr class="rule">
+
+<!-- ============================================================ -->
+<!-- SOURCES / METHODOLOGY / FOOTER — copy unchanged from Phase 3  -->
+<!-- ============================================================ -->
+
+<div class="data-sources">
+<strong>Data source.</strong> NY State Gaming Commission, Powerball Winning Numbers,
+2010–present. Current-era statistics (Panels 1–3) use 2015–present draws
+only, matching the 2015 white-ball pool-size change.
+</div>
+
+<div class="tools-block">
+<strong>Tools.</strong> R, tidyverse, ggplot2. Simulation: 5,000-replicate Monte Carlo,
+real draw mechanics (5-of-69, no replacement), seed 20260702.
+</div>
+
+<div class="licence-block">
+<!-- licence text carried forward from PDC template — not yet reauthored for this piece -->
+</div>
+
+<div class="footer-line">
+Steven Ponce · stevenponce.netlify.app
+</div>
+
+<!-- ```{=html} -->
+<!-- <script> -->
+<!-- // Manual scroll-based sticky swap. -->
+<!-- // Required workaround for Closeread v1.0.1 + Scrollama initialization -->
+<!-- // timing issue. Scrollama fires before layout is complete and misses -->
+<!-- // triggers already in the viewport on load. This script replaces -->
+<!-- // Scrollama's stepEnter logic with a direct scroll listener that -->
+<!-- // applies cr-active to the correct sticky on every scroll event. -->
+<!-- // -->
+<!-- // Logic: matches Closeread's offset: 0.5 — a trigger is "active" when -->
+<!-- // its top has crossed the 50% viewport mark. The last such trigger wins. -->
+<!-- // -->
+<!-- // DO NOT REMOVE. DO NOT REPLACE WITH scrollama.resize() calls. -->
+<!-- // Carried verbatim from PDC's 04_funafuti_tuvalu_threshold.qmd — -->
+<!-- // tested there against Closeread v1.0.1, Quarto 1.6.x, Windows, Chrome. -->
+
+<!-- window.addEventListener('load', function() { -->
+
+<!--   var triggers = Array.from(document.querySelectorAll('.trigger[data-focus-on]')); -->
+<!--   var stickies = document.querySelectorAll('.sticky'); -->
+
+<!--   function getActiveTarget() { -->
+<!--     var midpoint = window.innerHeight * 0.5; -->
+<!--     var active = null; -->
+<!--     triggers.forEach(function(t) { -->
+<!--       var rect = t.getBoundingClientRect(); -->
+<!--       if (rect.top <= midpoint) { -->
+<!--         active = t.getAttribute('data-focus-on'); -->
+<!--       } -->
+<!--     }); -->
+<!--     return active; -->
+<!--   } -->
+
+<!--   function updateStickies() { -->
+<!--     var activeId = getActiveTarget(); -->
+<!--     stickies.forEach(function(s) { -->
+<!--       if (s.id === activeId) { -->
+<!--         s.classList.add('cr-active'); -->
+<!--       } else { -->
+<!--         s.classList.remove('cr-active'); -->
+<!--       } -->
+<!--     }); -->
+<!--   } -->
+
+<!--   window.addEventListener('scroll', updateStickies); -->
+<!--   setTimeout(updateStickies, 200); -->
+<!-- }); -->
+<!-- </script> -->
+<!-- ``` -->

@@ -1,0 +1,80 @@
+/*-- scss:functions --*/
+// The Randomness Docket — closeread theme
+// NY Powerball · non-default direction (v0 sampler → theme)
+
+/*-- scss:defaults --*/
+
+// ── Google Fonts (all free — no Adobe) ───────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Archivo:wght@400;500;600;700&display=swap');
+
+// ── Palette (single source of truth) ─────────────────────────────
+$paper:    #f5f1e8;  // warm ivory — page + panel background
+$ink:      #24211c;  // warm graphite — structure, headings, ball rings
+$body-txt: #4a463d;  // secondary body text
+$muted:    #8a8272;  // captions, eyebrows, source lines
+$rule:     #ddd6c6;  // hairlines / dividers
+$blue:     #2e6f9e;  // EXPECTED / model / simulated
+$gold:     #a06e2a;  // OBSERVED — large text (18px+/bold) & decorative use ONLY. 3.92:1 on $paper: passes large-text/graphics 3:1, FAILS normal-text 4.5:1.
+$gold-text: #7a5220; // OBSERVED — small text variant (eyebrows, captions, body-size labels). 6.11:1 on $paper: passes AA.
+
+// ── Bootstrap / Quarto overrides ─────────────────────────────────
+$body-bg:            $paper;
+$body-color:         $ink;
+$link-color:         $blue;
+$font-family-serif:  "Libre Caslon Text", Georgia, serif;
+$font-family-sans-serif: "Archivo", system-ui, sans-serif;
+$font-family-base:   $font-family-serif;
+$headings-font-family: "Libre Caslon Display", Georgia, serif;
+$headings-font-weight: 400;
+
+/*-- scss:rules --*/
+
+// Expose palette as CSS custom properties for inline use / JS / plots
+:root {
+  --paper:  #{$paper};
+  --ink:    #{$ink};
+  --body:   #{$body-txt};
+  --muted:  #{$muted};
+  --rule:   #{$rule};
+  --blue:   #{$blue};   // expected
+  --gold:   #{$gold};   // observed — large/decorative only
+  --gold-text: #{$gold-text}; // observed — AA-safe for small text
+}
+
+body { font-family: $font-family-serif; color: $ink; background: $paper; }
+
+h1, h2, h3 { font-family: "Libre Caslon Display", Georgia, serif; letter-spacing: -0.01em; }
+
+// Eyebrow / label convention — Archivo, uppercase, tracked
+.eyebrow, .label {
+  font-family: "Archivo", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: $muted;
+}
+.eyebrow--gold { color: $gold-text; }  // AA-safe variant — DO NOT use $gold here, it fails normal-text contrast
+
+// Semantic color helpers — the piece's one recurring grammar
+.is-observed { color: $gold-text; }   // gold  = what actually happened (AA-safe text variant)
+.is-observed--large { color: $gold; } // for large text (18px+/bold) and decorative use only
+.is-expected { color: $blue; }   // blue  = what the model predicts
+
+hr, .rule { border: 0; border-top: 1px solid $rule; }
+
+// Powerball as physical exhibit
+.pb {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 62px; height: 62px; border-radius: 50%;
+  font-family: "Archivo", sans-serif; font-weight: 700; font-size: 1.35rem;
+  color: $ink;
+  background: radial-gradient(circle at 38% 32%, #ffffff, #ece7db 78%);
+  border: 1.5px solid $ink;
+  box-shadow: 0 6px 14px rgba(36,33,28,0.18);
+}
+.pb--power {                          // the single Powerball → observed accent
+  color: #fff;
+  background: radial-gradient(circle at 38% 32%, #c58c3e, #{$gold} 82%);
+  border-color: #6f4a17;
+}

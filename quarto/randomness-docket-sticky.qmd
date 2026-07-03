@@ -1,0 +1,117 @@
+---
+title: "Does This Look Random to You?"
+format:
+  html:
+    theme: powerball-docket.scss
+    css: sticky-docket.css
+    self-contained: true
+execute:
+  warning: false
+  message: false
+  echo: false
+---
+
+<!--
+PHASE 4 — PLAIN STICKY IMPLEMENTATION
+=====================================
+This version intentionally removes Closeread / Scrollama / cr-active.
+The panels are ordinary sticky figures beside minimal exhibit labels.
+Editorial copy is preserved from the finalized cold-read draft.
+-->
+
+<div class="header-row">
+  <div class="eyebrow">THE RANDOMNESS DOCKET</div>
+</div>
+
+# Does This Look Random to You?
+
+<div class="standfirst">
+Real Powerball drawings can make ordinary randomness look suspicious. This
+piece treats three patterns as exhibits: consecutive numbers, repeated
+numbers between drawings, and a number that seems overdue. Each one is
+compared with what a fair random process predicts.
+</div>
+
+<hr class="rule">
+
+<section class="sticky-exhibit" id="exhibit-a">
+<div class="exhibit-copy">
+<div class="trigger-card">
+<p><strong>Exhibit A.</strong> A single Powerball drawing.</p>
+</div>
+</div>
+<figure class="exhibit-figure">
+<img src="../outputs/panel_01_consecutive_v3_docket.png" alt="Exhibit showing five Powerball balls from the February 20, 2019 drawing — 27, 49, 50, 51, 52 — with the observed rate of consecutive pairs (26.4%) compared to a fair-random simulation (26.3%).">
+</figure>
+</section>
+
+<section class="sticky-exhibit" id="exhibit-b">
+<div class="exhibit-copy">
+<div class="trigger-card">
+<p><strong>Exhibit B.</strong> Two consecutive drawings.</p>
+</div>
+</div>
+<figure class="exhibit-figure">
+<img src="../outputs/panel_02_overlap_v2_docket.png" alt="Exhibit showing two consecutive Powerball drawings, February 9 and February 11, 2026, sharing the numbers 6 and 48, with the observed rate of at least one shared number (32.0%) compared to the hypergeometric expectation (32.2%).">
+</figure>
+</section>
+
+<section class="sticky-exhibit" id="exhibit-c">
+<div class="exhibit-copy">
+<div class="trigger-card">
+<p><strong>Exhibit C.</strong> A number that hasn't appeared in weeks.</p>
+</div>
+</div>
+<figure class="exhibit-figure">
+<img src="../outputs/panel_03_droughts_v5_docket.png" alt="Exhibit showing number 23's current 48-draw drought compared to the typical range of 46 to 87 draws for the most-overdue number, from a 5,000-replicate simulation.">
+</figure>
+</section>
+
+<hr class="rule">
+
+<div class="methodology">
+<div class="eyebrow">MECHANISM</div>
+
+<p>Three exhibits, three intuition failures. Here's the property of
+randomness that's doing the work behind all of them.</p>
+
+<p>No number in this dataset appears more or less often than chance would
+predict. But that stability only shows up over the long run. Early in any
+single number's history, its observed rate swings 15 to 300 times more
+than it does over the full dataset — small samples are noisy by nature.
+As draws accumulate, that swing narrows toward the expected rate.</p>
+
+<p>A consecutive pair, a shared number, a long drought — each looks like
+a signal because it's being read in isolation, the way a single early
+swing looks like a trend before the sample catches up. Looked at across
+the full history, each is part of the texture a fair random process
+produces at this sample size.</p>
+</div>
+
+<hr class="rule">
+
+<div class="coda">
+Randomness isn't the absence of patterns. It's the presence of patterns
+that don't mean anything.
+</div>
+
+<hr class="rule">
+
+<div class="data-sources">
+<strong>Data source.</strong> NY State Gaming Commission, Powerball Winning Numbers,
+2010–present. Current-era statistics (Panels 1–3) use 2015–present draws
+only, matching the 2015 white-ball pool-size change.
+</div>
+
+<div class="tools-block">
+<strong>Tools.</strong> R, tidyverse, ggplot2. Simulation: 5,000-replicate Monte Carlo,
+real draw mechanics (5-of-69, no replacement), seed 20260702.
+</div>
+
+<div class="licence-block">
+<!-- licence text carried forward from PDC template — not yet reauthored for this piece -->
+</div>
+
+<div class="footer-line">
+Steven Ponce · stevenponce.netlify.app
+</div>
