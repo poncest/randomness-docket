@@ -3,8 +3,11 @@
 **The Randomness Docket** — a scrollytelling piece examining how real
 Powerball drawings can make ordinary randomness look suspicious.
 
-🔗 **Live:** https://randomness-docket.netlify.app/
-💻 **Source:** this repository
+🚀 **Live piece:**\
+[Does This Look Random to You? — The Randomness Docket](https://randomness-docket.netlify.app/)
+
+💻 **Source code:**\
+[GitHub repository](https://github.com/poncest/randomness-docket)
 
 ---
 
